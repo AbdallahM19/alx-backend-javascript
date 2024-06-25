@@ -4,7 +4,7 @@ export default function getResponseFromAPI() {
     if (success) {
       resolve('success');
     } else {
-      reject('failed');
+      reject(new Error('failed'));
     }
   });
 }
