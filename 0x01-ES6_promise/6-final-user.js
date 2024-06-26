@@ -11,7 +11,7 @@ export default async function handleProfileSignup(firstName, lastName, fileName)
       if (r.status === 'fulfilled') {
         array.push({ status: r.status, value: r.value });
       } else {
-        array.push({ status: r.status, reason: r.reason });
+        array.push({ status: r.status, value: r.reason });
       }
     });
     return array;
