@@ -1,17 +1,17 @@
 export default function cleanSet(set, startString) {
-  if (typeof startString !== 'string' || startString.length === 0) {
-    throw new Error('StartString must be a string');
-  }
-
-  if (startString === '') {
+  if (!set || !startString || typeof startString !== 'string' || startString.length === 0) {
     return '';
   }
 
   const result = [];
 
   for (const value of set) {
-    if (value.startsWith(startString)) {
-      result.push(value.slice(startString.length));
+    if (typeof value === 'string' && value.startsWith(startString)) {
+      const valString = value.substring(startString.length);
+
+      if (valString && valString !== value) {
+        result.push(valString);
+      }
     }
   }
 
