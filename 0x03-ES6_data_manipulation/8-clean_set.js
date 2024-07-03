@@ -1,5 +1,9 @@
 export default function cleanSet(set, startString) {
   if (typeof startString !== 'string' || startString.length === 0) {
+    throw new Error('StartString must be a string');
+  }
+
+  if (startString === '') {
     return '';
   }
 
