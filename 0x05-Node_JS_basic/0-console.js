@@ -3,7 +3,7 @@
  * @param {String} dispaly as message.
  */
 const displayMessage = (param) => {
-    console.log(`${param}`);
+    console.log(param);
 };
 
 module.exports = displayMessage;
