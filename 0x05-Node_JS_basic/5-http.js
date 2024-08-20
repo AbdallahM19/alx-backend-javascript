@@ -1,21 +1,24 @@
 const http = require('http');
-const fs = require('fs').promises;
+const fs = require('fs');
 
 const PORT = 1245;
 const HOST = 'localhost';
-const DB_FILE = process.argv[2] || '';
+const app = http.createServer();
+const DB_FILE = process.argv.length > 2 ? process.argv[2] : '';
 
 /**
  * Counts the students in a CSV data file.
  * @param {String} dataPath The path to the CSV data file.
+ * @returns {String} The formatted student count report.
+ * @throws {Error} Throws an error if the file cannot be read or processed.
  */
-const countStudents = async (dataPath) => {
+const countStudents = (dataPath) => {
   if (!dataPath) {
     throw new Error('Cannot load the database');
   }
 
   try {
-    const data = await fs.readFile(dataPath, 'utf8');
+    const data = fs.readFileSync(dataPath, 'utf8');
     const lines = data.trim().split('\n').filter(line => line.trim() !== '');
     const headers = lines[0].split(',');
     const students = lines.slice(1).map((line) => line.split(',')).filter((fields) => fields.length === headers.length);
@@ -41,7 +44,7 @@ const countStudents = async (dataPath) => {
   }
 };
 
-const app = http.createServer(async (req, res) => {
+app.on('request', (req, res) => {
   res.setHeader('Content-Type', 'text/plain');
 
   if (req.url === '/') {
@@ -51,7 +54,7 @@ const app = http.createServer(async (req, res) => {
     res.statusCode = 200;
     res.write('This is the list of our students\n');
     try {
-      const report = await countStudents(DB_FILE);
+      const report = countStudents(DB_FILE);
       res.end(report);
     } catch (error) {
       res.statusCode = 500;
@@ -64,7 +67,8 @@ const app = http.createServer(async (req, res) => {
 });
 
 app.listen(PORT, HOST, () => {
-  console.log(`Server is listening on http://${HOST}:${PORT}`);
+  console.log(`Server listening at -> http://${HOST}:${PORT}`);
 });
 
 module.exports = app;
+
