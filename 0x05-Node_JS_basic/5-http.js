@@ -6,6 +6,11 @@ const host = 'localhost';
 const app = http.createServer();
 const DB_FILE = process.argv.length > 2 ? process.argv[2] : '';
 
+/**
+ * Counts the students in a CSV data file.
+ * @param {String} dataPath The path to the CSV data file.
+ * @returns {Promise<String>} A promise that resolves with the formatted student count report.
+ */
 const countStudents = (dataPath) => {
   return new Promise((resolve, reject) => {
     if (!dataPath) {
