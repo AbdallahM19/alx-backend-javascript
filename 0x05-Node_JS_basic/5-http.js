@@ -5,6 +5,10 @@ const PORT = 1245;
 const HOST = 'localhost';
 const DB_FILE = process.argv[2] || '';
 
+/**
+ * Counts the students in a CSV data file.
+ * @param {String} dataPath The path to the CSV data file.
+ */
 const countStudents = async (dataPath) => {
   if (!dataPath) {
     throw new Error('Cannot load the database');
@@ -12,7 +16,7 @@ const countStudents = async (dataPath) => {
 
   try {
     const data = await fs.readFile(dataPath, 'utf8');
-    const lines = data.trim().split('\n');
+    const lines = data.trim().split('\n').filter(line => line.trim() !== '');
     const headers = lines[0].split(',');
     const students = lines.slice(1).map((line) => line.split(',')).filter((fields) => fields.length === headers.length);
     const fieldCounts = {};
