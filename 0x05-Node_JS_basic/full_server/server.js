@@ -1,13 +1,13 @@
 import express from 'express';
-import router from './routes/index';
+import mapRoutes from './routes';
 
 const app = express();
-const port = 1245;
+const PORT = 1245;
 
-app.use(router);
-
-app.listen(port, () => {
-  console.log(`Server is listening on http://localhost:${port}`);
+mapRoutes(app);
+app.listen(PORT, () => {
+  console.log(`Server listening on PORT ${PORT}`);
 });
 
 export default app;
+module.exports = app;
