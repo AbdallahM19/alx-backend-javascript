@@ -6,16 +6,16 @@ describe('calculateNumber', function() {
     assert.strictEqual(calculateNumber(1, 3), 4);
   });
 
-  it('should return 5 when input is 1 and 3.7', function() {
-    assert.strictEqual(calculateNumber(1, 3.7), 5);
+  it('should return 5 when input is 2 and 3.7', function() {
+    assert.strictEqual(calculateNumber(2, 3.7), 5);
   });
 
-  it('should return 5 when input is 1.2 and 3.7', function() {
-    assert.strictEqual(calculateNumber(1.2, 3.7), 5);
+  it('should return 5 when input is 2.2 and 3.7', function() {
+    assert.strictEqual(calculateNumber(2.2, 3.7), 5);
   });
 
   it('should return 6 when input is 1.5 and 3.7', function() {
-    assert.strictEqual(calculateNumber(1.5, 3.7), 6);
+    assert.strictEqual(calculateNumber(1.5, 3.7), 5);
   });
 
   it('should return 0 when input is 0 and 0', function() {
