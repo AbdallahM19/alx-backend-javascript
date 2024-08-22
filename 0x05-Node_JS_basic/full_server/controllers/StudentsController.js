@@ -1,4 +1,4 @@
-import readDatabase from '../utils.js';
+import readDatabase from '../utils';
 
 const VALID_MAJORS = ['CS', 'SWE'];
 
