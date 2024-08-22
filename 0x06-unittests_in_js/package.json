@@ -1,17 +1,12 @@
 {
-  "name": "0x06-unittests_in_js",
-  "version": "1.0.0",
-  "description": "0x06-unittests_in_js Tasks",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ."
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "eslint": "^9.9.0",
-    "mocha": "^10.7.3"
+    "mocha": "^10.3.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "sinon": "^17.0.1"
   }
 }
